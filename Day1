@@ -1,0 +1,27 @@
+import csv
+
+scanData = []
+
+filename = 'AoCDay1Data.txt'
+
+with open(filename, 'r') as csv_file:
+    csv_reader = csv.reader(csv_file)
+
+    for row in csv_reader:
+        scanData.append(row[0])
+        for item in range(0, len(scanData)):
+            scanData[item] = int(scanData[item])
+
+    i = 0
+    holding = 0
+    increaseCounter = 0
+    for i in range(0, len(scanData)):
+        if scanData[i] < holding:
+            holding = scanData[i]
+        elif scanData[i] > holding:
+            increaseCounter += 1
+            holding = scanData[i]
+
+print(scanData)
+print('')
+print(increaseCounter - 1, " Is the number of times the depth counter increased")
